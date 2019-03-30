@@ -1,13 +1,22 @@
 <?php
 
-namespace FluentInterface\Tests;
+namespace Tests;
 
-use FluentInterface\Sql;
+use Sql;
 
-require __DIR__ . '/../Sql.php';
+spl_autoload_register(function ($class) {
+    include __DIR__ . '/../' . $class . '.php';
+});
 
+/**
+ * Class FluentInterfaceTest
+ * @package Tests
+ */
 class FluentInterfaceTest
 {
+    /**
+     * Test FluentInterface
+     */
     public function testBuildSQL()
     {
         $query = (new Sql())
@@ -19,4 +28,5 @@ class FluentInterfaceTest
     }
 }
 
+// Run test.
 (new FluentInterfaceTest())->testBuildSQL();

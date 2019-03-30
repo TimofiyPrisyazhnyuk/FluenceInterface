@@ -1,7 +1,8 @@
 <?php
 
-namespace FluentInterface;
-
+/**
+ * Class Sql
+ */
 class Sql
 {
     /**
@@ -19,6 +20,10 @@ class Sql
      */
     private $where = [];
 
+    /**
+     * @param array $fields
+     * @return Sql
+     */
     public function select(array $fields): Sql
     {
         $this->fields = $fields;
@@ -26,6 +31,11 @@ class Sql
         return $this;
     }
 
+    /**
+     * @param string $table
+     * @param string $alias
+     * @return Sql
+     */
     public function from(string $table, string $alias): Sql
     {
         $this->from[] = $table.' AS '.$alias;
@@ -33,6 +43,10 @@ class Sql
         return $this;
     }
 
+    /**
+     * @param string $condition
+     * @return Sql
+     */
     public function where(string $condition): Sql
     {
         $this->where[] = $condition;
@@ -40,6 +54,9 @@ class Sql
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
         return sprintf(
